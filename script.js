@@ -1,4 +1,5 @@
-// Assignment Code
+
+// intial variables 
 let generateBtn = document.querySelector("#generate");
 let lowerCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 let upperCharacters = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
@@ -7,7 +8,7 @@ let upperCharacters = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', '
 let numCharacters = ["1","2","3","4","5","6","7","8","9","0"];
 let specialCharacters = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]","|","\",","<",",",">",".","?","/"];
 
-// Write password to the #password input
+// generate password and set the password text to it
 function writePassword() {
   let password = generatePassword();
   console.log(password);
@@ -21,11 +22,13 @@ function generatePassword() {
   let passwordLength = prompt("Please enter length of password:");
   console.log(passwordLength);
 
+// if passwords are less than 8 or more than 128, it will cancel and return
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Must be more than 8 characters or less than 128");
     return ""
   }
 
+  // prompts/confirms to pop up and ask user to include characters
   let lowercase = confirm("Include lowercase characters?");
   console.log(lowercase);
   let uppercase = confirm("Include uppercase characters?");
@@ -35,6 +38,7 @@ function generatePassword() {
   let specialCharacter = confirm("Include special characters?");
   console.log(specialCharacter);
 
+  // if none of the characters are selected, it will cancel and return
   if (lowercase == false && uppercase == false && numeric == false && specialCharacter == false) {
     alert("Must have at least one type of character.");
     return ""
@@ -42,6 +46,7 @@ function generatePassword() {
 
   let password = "";
 
+  // for loop with if statements for every array
   for ( i = 0; i < passwordLength; i++ ){
     let charArray = []
     if (lowercase) {
@@ -76,8 +81,5 @@ function generatePassword() {
   console.log(password);
   return password;
 }
-
-// for loop to repeat process however many times needed, random logic to get random characters, concact to build array of random to use
-
-// Add event listener to generate button
+// Generate button on click
 generateBtn.addEventListener("click", writePassword);
